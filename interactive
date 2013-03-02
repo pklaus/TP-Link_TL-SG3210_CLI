@@ -1,0 +1,25 @@
+#!/usr/bin/expect
+
+# Start an interactive session
+# usage: ./interactive 192.168.1.2 admin password
+
+# Written by Philipp Klaus
+
+# Credits to:
+# http://stackoverflow.com/a/7013379
+# http://stackoverflow.com/a/10190013
+
+set timeout 20
+set name [lindex $argv 0]
+set user [lindex $argv 1]
+set password [lindex $argv 2]
+set stty_init "rows 10000 cols 200"
+spawn -nottycopy telnet $name
+
+expect "User:"
+send "$user\r"
+expect "Password:"
+send "$password\r"
+expect "TP-LINK>"
+interact
+

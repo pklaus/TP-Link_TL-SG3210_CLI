@@ -1,0 +1,34 @@
+#!/usr/bin/expect
+
+# Get device and port statistics from the switch
+# usage: ./get-stats 192.168.1.2 admin password
+
+# Written by Philipp Klaus
+
+# Credits to:
+# http://stackoverflow.com/a/7013379
+# http://stackoverflow.com/a/10190013
+
+set timeout 20
+set name [lindex $argv 0]
+set user [lindex $argv 1]
+set password [lindex $argv 2]
+set stty_init "rows 10000 cols 200"
+spawn -nottycopy telnet $name
+
+expect "User:"
+send "$user\r"
+expect "Password:"
+send "$password\r"
+expect "TP-LINK>"
+send "show system-info\r"
+expect "TP-LINK>"
+send "show system-time\r"
+expect "TP-LINK>"
+send "show interface configuration ethernet\r"
+expect "TP-LINK>"
+send "show interface counters ethernet\r"
+expect "TP-LINK>"
+send "show bridge address all\r"
+expect "TP-LINK>"
+send "exit\r"

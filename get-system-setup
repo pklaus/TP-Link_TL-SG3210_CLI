@@ -1,0 +1,66 @@
+#!/usr/bin/expect
+
+# Get configuration settings from the switch
+# usage: ./get-system-setup 192.168.1.2 admin password
+
+# Written by Philipp Klaus
+
+# Credits to:
+# http://stackoverflow.com/a/7013379
+# http://stackoverflow.com/a/10190013
+
+set timeout 20
+set name [lindex $argv 0]
+set user [lindex $argv 1]
+set password [lindex $argv 2]
+set stty_init "rows 10000 cols 200"
+spawn -nottycopy telnet $name
+
+expect "User:"
+send "$user\r"
+expect "Password:"
+send "$password\r"
+expect "TP-LINK>"
+send "show system-info\r"
+expect "TP-LINK>"
+send "show system-time\r"
+expect "TP-LINK>"
+send "show user configuration\r"
+expect "TP-LINK>"
+send "show user account-list\r"
+expect "TP-LINK>"
+send "show ip address\r"
+expect "TP-LINK>"
+send "show interface configuration ethernet\r"
+expect "TP-LINK>"
+send "show interface status ethernet\r"
+expect "TP-LINK>"
+send "show interface switchport\r"
+expect "TP-LINK>"
+send "show mirror\r"
+expect "TP-LINK>"
+send "show storm-control ethernet\r"
+expect "TP-LINK>"
+send "show dos-prevent\r"
+expect "TP-LINK>"
+send "show logging loghost\r"
+expect "TP-LINK>"
+send "show arp detection global\r"
+expect "TP-LINK>"
+send "show binding-table\r"
+expect "TP-LINK>"
+send "show vlan\r"
+expect "TP-LINK>"
+send "show voice-vlan global\r"
+expect "TP-LINK>"
+send "show voice-vlan switchport\r"
+expect "TP-LINK>"
+send "show qos status\r"
+expect "TP-LINK>"
+send "show dot1x global\r"
+expect "TP-LINK>"
+send "show dot1x interface\r"
+expect "TP-LINK>"
+send "show dhcp-snooping global\r"
+expect "TP-LINK>"
+send "exit\r"
