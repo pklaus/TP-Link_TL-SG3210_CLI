@@ -27,6 +27,7 @@ send "$username\r"
 expect "Password:"
 send "$password\r"
 
+puts "\n\nPress ? to get help. Enter  exit  to leave the interactive session."
 expect "TP-LINK>"
 interact
 
