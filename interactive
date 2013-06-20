@@ -28,6 +28,7 @@ expect "Password:"
 send "$password\r"
 
 puts "\n\nPress ? to get help. Enter  exit  to leave the interactive session."
-expect "TP-LINK>"
+puts "Enter  enable  and then the password again for the privileged mode."
+expect ">"
 interact
 
