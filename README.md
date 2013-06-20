@@ -1,7 +1,7 @@
 ### TP-Link_TL-SG3210_CLI
 
 This project contains a collection of scripts to query a TP-Link TL-SG3210 Gigabit Switch
-via its Telnet CLI interface.
+via its Telnet CLI interface. In addition SSH is now also supported.
 
 The scripts make it easier for you to export the configuration settings of the switch and
 save them in a human readable format.
