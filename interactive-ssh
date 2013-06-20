@@ -1,0 +1,32 @@
+#!/usr/bin/expect
+
+# Start an interactive session
+# usage: ./interactive 192.168.1.2 admin password
+
+# Written by Philipp Klaus
+
+# Credits to:
+# http://stackoverflow.com/a/7013379
+# http://stackoverflow.com/a/10190013
+
+set hostname [lindex $argv 0]
+set username [lindex $argv 1]
+set password [lindex $argv 2]
+
+if { $hostname == "" || $username == "" || $password == "" }  {
+  puts "Usage: <hostname> <username> <password>\n"
+  exit 1
+}
+
+set timeout 20
+set stty_init "rows 10000 cols 200"
+spawn -nottycopy /usr/bin/ssh -l $username $hostname
+
+expect "password: "
+send "$password\r"
+
+puts "\n\nPress ? to get help. Enter  exit  to leave the interactive session."
+puts "Enter  enable  and then the password again for the privileged mode."
+expect ">"
+interact
+
