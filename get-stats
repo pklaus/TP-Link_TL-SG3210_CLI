@@ -1,7 +1,7 @@
 #!/usr/bin/expect
 
 # Get device and port statistics from the switch
-# usage: ./get-stats 192.168.1.2 admin password
+# usage: ./get-stats 192.168.1.2 admin password enablepassword
 
 # Written by Philipp Klaus
 
@@ -12,9 +12,10 @@
 set hostname [lindex $argv 0]
 set username [lindex $argv 1]
 set password [lindex $argv 2]
+set enablepassword [lindex $argv 3]
 
-if { $hostname == "" || $username == "" || $password == "" }  {
-  puts "Usage: <hostname> <username> <password>\n"
+if { $hostname == "" || $username == "" || $password == "" || $enablepassword == "" }  {
+  puts "Usage: <hostname> <username> <password> <enablepassword>\n"
   exit 1
 }
 
@@ -30,7 +31,7 @@ send "$password\r"
 expect ">"
 send "enable\r"
 expect "Password:"
-send "$password\r"
+send "$enablepassword\r"
 
 expect "#"
 send "show system-info\r"

@@ -12,9 +12,10 @@
 set hostname [lindex $argv 0]
 set username [lindex $argv 1]
 set password [lindex $argv 2]
-
-if { $hostname == "" || $username == "" || $password == "" }  {
-  puts "Usage: <hostname> <username> <password>\n"
+set enablepassword [lindex $argv 3]
+ 
+if { $hostname == "" || $username == "" || $password == "" || $enablepassword == "" }  {
+  puts "Usage: <hostname> <username> <password> <enablepassword>\n"
   exit 1
 }
 
@@ -30,7 +31,7 @@ send "$password\r"
 expect ">"
 send "enable\r"
 expect "Password:"
-send "$password\r"
+send "$enablepassword\r"
 
 expect "#"
 send "show system-info\r"

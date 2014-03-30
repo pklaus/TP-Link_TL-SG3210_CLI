@@ -13,7 +13,7 @@ with Mac OS X.
 
 You could run this for example to gather some network stats:
 
-    ./get-stats 192.168.1.2 admin password > switch-stats_$(date +"%Y-%m-%d_%H-%M").log
+    ./get-stats 192.168.1.2 admin password enablepassword > switch-stats_$(date +"%Y-%m-%d_%H-%M").log
 
 The log files contain a lot of carriage returns (CR / 0x0D). If you want to remove those
 and leave only the newline characters (LF / 0x0A) in the file, run this perl command:
